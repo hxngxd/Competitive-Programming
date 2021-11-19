@@ -1,21 +1,22 @@
 #include <bits/stdc++.h>
-#define ll long long
 using namespace std;
-ll subtask1(int n, int a[][4]){
-    if (a[0][0]==a[1][0]){
+float giaithua(int n){
+    float gt = 1;
+    for (int i=1;i<=n;i++){
+        gt *= i;
     }
+    return gt;
 }
 int main(){
-//    int n; cin >> n;
-//    int a[n+1][4];
-//    for (int i=0;i<n;i++){
-//        for (int j=0;j<4;j++) cin >> a[i][j];
-//    }
-    for (int i=0,j=0;j*i<=1000){
-        cout << 3;
-        j++;
-        i++;
+    int n = 1;
+    float nghichdaogt = 1 / giaithua(n);
+    float en = 1;
+    while (nghichdaogt >= 2*pow(10,-6)){
+        en += nghichdaogt;
+        cout << nghichdaogt << " ";
+        n++;
+        nghichdaogt = 1 / giaithua(n);
     }
-
+    cout << en;
     return 0;
 }
