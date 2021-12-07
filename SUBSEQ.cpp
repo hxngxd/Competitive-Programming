@@ -1,29 +1,34 @@
 #include <bits/stdc++.h>
+#define ll long long
 using namespace std;
-void solve(int n, int S){
-    int a[n+1];
-    vector<int> prefix;
-    int prefsum = 0, cnt = 0;
+int n;
+ll S;
+ll sub(){
+    cin >> n >> S;
+    ll a[n+1];
+    vector<ll> prefix(n, 0);
+    ll cnt = 0;
     for (int i=0;i<n;i++){
         cin >> a[i];
-        prefsum += a[i];
-        prefix.push_back(prefsum);
-        if (prefsum > S || prefsum < S*-1) cnt++;
+        if (i==0){
+            prefix[i] = a[i];
+        }
+        else {
+            prefix[i] = prefix[i-1] + a[i];
+            for (int j=0;j<i;j++){
+                ll abssum = abs(prefix[i]-prefix[j]);
+                if (abssum>S) cnt++;
+            }
+        }
+        if (abs(prefix[i]) > S) cnt++;
     }
-    sort(prefix.begin(), prefix.end());
-    for (int i=0;i<n;i++){
-        cnt += n - (upper_bound(prefix.begin(), prefix.end(), prefix[i] + S) - prefix.begin());
-    }
-    cout << cnt;
+    return cnt;
 }
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
     freopen("SUBSEQ.INP", "r", stdin);
     freopen("SUBSEQ.OUT", "w", stdout);
-    int n, S; cin >> n >> S;
-    solve(n, S);
+    cout << sub();
     return 0;
 }
-/*
-10 7
--4 9 2 -11 -3 8 -6 5 -3 1
-*/
