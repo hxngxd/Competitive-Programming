@@ -5,42 +5,39 @@ using namespace std;
 int ctoi(char c){
     return c - 48;
 }
-vector<int> dsum(string s){
+vector<int> dsum(string s, map<int, vector<int>> &mp){
     int ans = 0, odd = 0;
-    int min_odd = INT_MAX, id=-1;
     for (int i=0;i<s.size();i++){
         int num = ctoi(s[i]);
         ans += num;
         if (num%2==1){
             odd++;
-            if (num < min_odd){
-                min_odd = num;
-                id = i;
-            }
+            mp[num].push_back(i);
         }
     }
-    return {ans, odd, min_odd, id};
+    return {ans, odd};
 }
 string res(string s){
-    vector<int> sum = dsum(s);
-    if (sum[1]==0) return "0";
-    if (sum[0]%2==0 && ctoi(s.back())%2==1) return s;
-
-    while (ctoi(s.back())%2==0){
-        sum[0] -= ctoi(s.back());
-        s.pop_back();
-    }
-    if (sum[0]%2==0) return s;
-    if (sum[1]-1==0) return "0";
-    int min_odd = INT_MAX, id=-1;
-    for (int i=0;i<s.size()-1;i++){
-        int num = ctoi(s[i]);
-        if (num < INT_MAX){
-            min_odd = num;
-            id = i;
+    map<int, vector<int>> mp;
+    vector<int> sum = dsum(s, mp);
+//    if (sum[1]==0) return "0";
+//    if (sum[0]%2==0 && ctoi(s.back())%2==1) return s;
+//
+//    while (ctoi(s.back())%2==0){
+//        sum[0] -= ctoi(s.back());
+//        s.pop_back();
+//    }
+//    if (sum[0]%2==0) return s;
+//    if (sum[1]==1) return "0";
+    cout << s << endl;
+    for (auto i : mp){
+        cout << i.first << ": ";
+        for (int j=0;j<i.second.size();j++){
+            cout << i.second[j] << " ";
         }
+        cout << endl;
     }
-    if (mid_odd==)
+    cout << endl;
 }
 int n;
 void solve(){
@@ -48,7 +45,7 @@ void solve(){
     string a[n+1];
     for (int i=0;i<n;i++){
         cin >> a[i];
-        cout << res(a[i]) << endl;
+        res(a[i]);
     }
 }
 int main(){
