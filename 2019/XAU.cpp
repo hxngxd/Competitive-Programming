@@ -21,7 +21,7 @@ int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     freopen("XAU.INP", "r", stdin);
-//    freopen("XAU.OUT", "w", stdout);
+    freopen("XAU.OUT", "w", stdout);
     cout << solve();
     return 0;
 }
