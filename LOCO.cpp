@@ -2,23 +2,17 @@
 #define ll unsigned long long
 using namespace std;
 int main(){
-    ll n, m; n = 1000, m = 100;
-    ll a[3]={1,1,2};
-    if (n<=2){
-        cout << a[n-1];
-        return 0;
+    freopen("LOCO.INP", "r", stdin);
+    freopen("LOCO.OUT", "w", stdout);
+    ll n, m;
+    cin >> n >> m;
+    int a=1,b=1,c=2;
+    int k=3;
+    while (k<=n){
+        int temp = (a+b+c)%m;
+        a = b; b = c; c = temp;
+        k++;
     }
-    ll curr_step = 2;
-    ll temp=a[2];
-    for (int i=0;i<3;i++) cout << a[i] << endl;
-    while (curr_step < n){
-        a[2] = a[2]+a[1]+a[0];
-        a[0] = a[1];
-        a[1] = temp;
-        temp = a[2];
-        cout << a[2] << " " << a[2]%m << endl;
-        curr_step++;
-    }
-    cout << a[2];
+    cout << c;
     return 0;
 }
