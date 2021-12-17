@@ -1,44 +1,28 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
-int pldsubseq(string s){
-    int n = s.size();
-    if (n==1) return 1;
-    int dp[n][n];
-    for (int i=0;i<n;i++){
-        dp[i][i]=1;
-    }
-    int i=0, t=1, j=i+t;
-    while (true){
-        if (s[i]==s[j]){
-            dp[i][j] = (j==i+1) ? 2 : dp[i+1][j-1] + 2;
-        }
-        else{
-            dp[i][j] = max(dp[i][j-1], dp[i+1][j]);
-        }
-        if (j==n){
-            t++;
-            i=0;
-            j=i+t;
-            continue;
-        }
-        if (i==0 && j==n-1) break;
-        i++; j++;
-    }
-    for (int t=1;t<n;t++){
-        for (int i=0;i<n-1;i++){
-            dp[i][i+t]=2;
+int minDistance(string s1, string s2) {
+    int n = s1.size(), m = s2.size();
+    int dp[n+1][m+1];
+    for (int i=0;i<=n;i++) dp[i][0] = i;
+    for (int i=0;i<=m;i++) dp[0][i] = i;
+    for (int i=1;i<=n;i++){
+        for (int j=1;j<=m;j++){
+            if (s1[i-1]==s2[j-1]) dp[i][j] = dp[i-1][j-1];
+            else{
+                dp[i][j] = min(dp[i-1][j-1], min(dp[i-1][j], dp[i][j-1])) + 1;
+            }
         }
     }
-    for (int i=0;i<n;i++){
-        for (int j=0;j<n;j++){
+    for (int i=0;i<=n;i++){
+        for (int j=0;j<=m;j++){
             cout << dp[i][j] << " ";
         }
         cout << endl;
     }
-    return dp[0][n-1];
+    return dp[n][m];
 }
 int main(){
-    cout << pldsubseq("BABCBAB");
+    cout << minDistance("horse", "ros");
     return 0;
 }
