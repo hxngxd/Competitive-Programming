@@ -11,9 +11,7 @@ string bracket(int n, string s){
         if (s[i]=='(') v.push_back(s[i]);
         else{
             if (v.empty()) return "NO";
-            else{
-                if (v.back()=='(') v.pop_back();
-            }
+            else v.pop_back();
         }
     }
     return (v.empty()) ? "YES" : "NO";
