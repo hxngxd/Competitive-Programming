@@ -4,8 +4,8 @@ using namespace std;
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("PFACTORIAL.INP", "r", stdin);
-    freopen("PFACTORIAL.OUT", "w", stdout);
+//    freopen("PFACTORIAL.INP", "r", stdin);
+//    freopen("PFACTORIAL.OUT", "w", stdout);
     ll n; cin >> n;
     map<ll, ll> mp;
     ll k = 2;
