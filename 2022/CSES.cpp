@@ -3,24 +3,25 @@
 #define ll long long
 #define pb push_back
 using namespace std;
-vector<string> a;
-string out = "";
-void gray(int n, string s){
-    if (s.size()==n){
-        a.pb(s);
-        cout << s << endl;
+string solve(){
+    ll n, x; cin >> n >> x;
+    map<ll, ll> mp;
+    if (n==1) return "IMPOSSIBLE";
+    for (int i=0;i<n;i++){
+        ll a; cin >> a;
+        if (mp.find(x-a) != mp.end()){
+            return to_string(i+1) + " " + to_string(mp[x-a]+1);
+        }
+        else{
+            mp[a] = i;
+        }
     }
-    else{
-        gray(n, '0' + s);
-        gray(n, '1' + s);
-    }
+    return "IMPOSSIBLE";
 }
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
-    int n; cin >> n;
-    gray(n, "");
-    cout << out;
+    cout << solve();
     return 0;
 }

@@ -1,25 +1,25 @@
+/*Nguyen Tuong Hung*/
 #include <bits/stdc++.h>
-#define int64 unsigned long long
+#define ll long long
+#define pb push_back
+#define key first
+#define val second
 using namespace std;
+const int M = 1e9 + 7;
 int main(){
-    int t; cin >> t;
-    int64 N[t+1], A1[t+1];
-    string ans = "";
-    for (int i=0;i<t;i++){
-        cin >> N[i] >> A1[i];
-        if (A1[i] % (int64)(1 + N[i] * pow(2, N[i]-1)) != 0){
-            ans += "-1\n";
-            continue;
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    ll n, x; cin >> n >> x;
+    ll c[n];
+    for (int i=0;i<n;i++) cin >> c[i];
+    vector<ll> dp(x+1, 0);
+    dp[0] = 1;
+    for (int i=1;i<=x;i++){
+        for (int j=0;j<n;j++){
+            if (i>=c[j]) dp[i] += dp[i-c[j]]%M;
         }
-        ans += to_string(A1[i]) + " ";
-        int64 x = (A1[i] / (int64)(1 + N[i] * (int64)pow(2, N[i]-1))) * (int64)pow(2, N[i]);
-        for (int j=1;j<N[i];j++){
-            int64 xj = (x / (int64)pow(2, N[i])) * (int64)(1 + N[i] * (int64)pow(2, N[i]-j-1));
-            ans += to_string(xj) + " ";
-        }
-        ans += "\n";
     }
-    cout << ans;
+    cout << dp[x]%M;
     return 0;
 }
-
