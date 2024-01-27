@@ -9,7 +9,7 @@ int main()
 {
     fast_io
     int n, k; cin >> n >> k;
-    int r, c;
+    int r=-1, c=-1;
     if (k==1) cin >> r >> c;
     c1[0] = 1, c2[0] = c3[0] = c4[0] = 0;
     for (int i=1;i<=n;i++){
