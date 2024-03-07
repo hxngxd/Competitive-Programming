@@ -9,7 +9,7 @@ int main()
     // fast_io
     srand(time(0));
     long long x = rand()%1000000000000000000 + 1;
-    long long low = 1, high = 1000000000000000000;
+    long long low = 1, high = 10000000000000000002;
     cout << x << nl;
     while (low <= high){
         long long mid = (low + high)/2;
