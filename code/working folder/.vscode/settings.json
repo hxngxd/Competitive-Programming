@@ -68,9 +68,13 @@
 		"typeindex": "cpp",
 		"typeinfo": "cpp",
 		"valarray": "cpp",
-		"any": "cpp"
+		"any": "cpp",
+		"charconv": "cpp",
+		"expected": "cpp",
+		"optional": "cpp",
+		"format": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled",
 	"C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\g++.exe",
-	"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"editor.defaultFormatter": "ms-vscode.cpptools"
 }

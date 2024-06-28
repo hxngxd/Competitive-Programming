@@ -2,17 +2,10 @@
 using namespace std;
 typedef long long ll;
 #define nl '\n'
-#define fast_io ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
 int main()
 {
-    fast_io
-    ifstream file(".confige");
-    if (file.good()){
-        cout << "YES";
-    }
-    else{
-        cout << "NO";
-    }
+    int n;
+    cin >> n;
     return 0;
 }
